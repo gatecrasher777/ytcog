@@ -1,4 +1,4 @@
-# ytcog
+# ytcog (pre-release)
 
 YouTube innertube object library, session, player, searches, channels, videos and downloads.
 
