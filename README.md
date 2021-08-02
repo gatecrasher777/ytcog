@@ -6,6 +6,8 @@ Simple, Efficient, Powerful and Fast.
 
 No Google developer key required.  To get the most from ytcog, all you need is an active YouTube account.
 
+The innertube api is what the YouTube website itself uses to efficiently deliver search, channel and video information. So it makes sense that a YouTube download library should use it too. 
+
 # Objects
 
 Session - manage your Youtube session/player - enables seemless search, channel, video and download requests.
