@@ -30,7 +30,7 @@ await ytcog.dl(downloadOptions);
 ```
 See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki) for downloadOptions
 
-## Session
+### Session
 ```js
 const ytcog = require('ytcog');
 const session = new ytcog.Session([cookie, userAgent]);
@@ -40,7 +40,7 @@ With a cookie, everything just works. Without it, some things will fail. In orde
 
 A session object is required to create searches, channels and videos.
 
-## Search
+### Search
 ```js
 const search = new ytcog.Search(session, searchOptions);
 await search.fetch();
@@ -56,7 +56,7 @@ If available, you can get an additional (+-20) results with each successive cont
 await search.continued();    
 ```
 
-## Channel
+### Channel
 ```js
 const channel = new ytcog.Channel(session, channelOptions);
 await channel.fetch();
@@ -72,7 +72,7 @@ If available, you can get an additional (+-30) videos with each successive conti
 await channel.continued();
 ```
 
-## Video
+### Video
 ```js
 const video = new ytcog.Video(session, videoOptions);
 await video.fetch();
