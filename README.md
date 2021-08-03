@@ -34,7 +34,7 @@ const ytcog = require('ytcog');
 const session = new ytcog.Session([cookie, userAgent]);
 await session.fetch();
 ```
-To obtain your youtube cookie and user agent: Log into YouTube on your browser. Goto settings > developer tools. Refresh the page. Goto network>headers for "www.youtube.com" In request headers you will find "cookie" and "user-agent". Use these values in your ytcog sessions.  
+With a cookie, everything just works. Without it, some things will fail. In order to obtain your youtube cookie and user agent: Log onto YouTube in your browser. Goto settings > ... > developer tools. Refresh the page. Goto network>headers. Find the "www.youtube.com" entry. In the request headers you will find "cookie" and "user-agent". Pass these string values in your ytcog sessions. 
 
 A session object is required to create searches, channels and videos.
 
