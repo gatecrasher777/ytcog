@@ -1,0 +1,32 @@
+{
+	"name": "ytcog",
+	"version": "1.0.0",
+	"description": "YouTube innertube class library for node-js; sessions, players, searches, channels, videos and downloads.",
+	"main": "./lib/index.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/gatecrasher777/ytcog.git"
+	},
+	"dependencies": {
+		"ffmpeg-static": "^4.2.7",
+		"miniget": "^4.2.0",
+		"sanitize-filename": "^1.6.3"
+	},
+	"keywords": [
+		"YouTube",
+		"search",
+		"channel",
+		"video",
+		"innertubeapi",
+		"player",
+		"session",
+		"download",
+		"library"
+	],
+	"author": "gatecrasher777",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/gatecrasher777/ytcog/issues"
+	},
+	"homepage": "https://github.com/gatecrasher777/ytcog#readme"
+}
