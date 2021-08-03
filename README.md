@@ -87,6 +87,12 @@ Cancels the current download:
 ```js
 video.cancel();
 ```
+## Install
+
+```bash
+npm install ytcog
+```
+
 ## Disclaimer 
 YouTube can and will change how their innertube api works at any time. So potential disruptions are likely in the future. I will try to evolve and adapt this library asap, but without gaurantees. 
 
