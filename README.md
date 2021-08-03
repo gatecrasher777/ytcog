@@ -1,6 +1,6 @@
 # ytcog
 
-YouTube innertube class library, session, player, searches, channels, videos and downloads.
+YouTube innertube class library for node-js; sessions, players, searches, channels, videos and downloads.
 
 ## Features
 
