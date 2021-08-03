@@ -101,6 +101,6 @@ YouTube can and will change how their innertube api works at any time. So potent
 
 ## Acknowledgement to the following node-js projects on which ytfomo depends:
 
-* miniget (robust web requests)
-* ffmpeg-static (muxing video & audio when necessary)
-* sanitize-filename (as the name suggests)
+* [miniget](https://github.com/fent/node-miniget) (robust web requests)
+* [ffmpeg-static](https://github.com/eugeneware/ffmpeg-static) (muxing video & audio when necessary)
+* [sanitize-filename](https://github.com/parshap/node-sanitize-filename) (as the name suggests)
