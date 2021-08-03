@@ -18,6 +18,8 @@ YouTube innertube class library for node-js; sessions, players, searches, channe
 * __Video__ - create video objects directly or from search and channel scan results - fetch metadata and stream information deciphered/encoded as necessary - bypass rate limiting and age restrictions - ensure reliable and fast downloads - no more 429s, 404s and 403s.
 * __Download__ - a convenience object for easy once-off, non-session, downloads.
 
+See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki) for greater detail.
+
 ## Usage 
 
 ### Easy downloader
@@ -26,7 +28,7 @@ YouTube innertube class library for node-js; sessions, players, searches, channe
 const ytcog = require('ytcog');
 await ytcog.dl(downloadOptions);
 ```
-See the [wiki](https://github.com/gatecrasher777/ytcog/wiki) for downloadOptions
+See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki) for downloadOptions
 
 ## Session
 ```js
@@ -43,7 +45,7 @@ A session object is required to create searches, channels and videos.
 const search = new ytcog.Search(session, searchOptions);
 await search.fetch();
 ```
-See the [wiki](https://github.com/gatecrasher777/ytcog/wiki) for searchOptions.
+See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki) for searchOptions.
 Search again over a different period:
 ```js
 search.updateOptions({period:'year'});
@@ -59,7 +61,7 @@ await search.continued();
 const channel = new ytcog.Channel(session, channelOptions);
 await channel.fetch();
 ```
-See [wiki](https://github.com/gatecrasher777/ytcog/wiki) for channelOptions.
+See [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki) for channelOptions.
 Get channel metadata with 
 ```js
 channel.updateOptions({order:'about'}); 
@@ -76,7 +78,7 @@ const video = new ytcog.Video(session, videoOptions);
 await video.fetch();
 await video.download([downloadOptions]);
 ```
-See [wiki](https://github.com/gatecrasher777/ytcog/wiki) for videoOptions.  
+See [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki) for videoOptions.  
 A boolean function provides an inexpensive way to check if a video is still online:
 ```js
 let found = await video.imageOnline();
