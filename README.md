@@ -28,7 +28,7 @@ See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki) for grea
 const ytcog = require('ytcog');
 await ytcog.dl(downloadOptions);
 ```
-See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki) for downloadOptions
+See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki#videodownload-options) for downloadOptions
 
 ### Session
 ```js
@@ -45,7 +45,7 @@ A session object is required to create searches, channels and videos.
 const search = new ytcog.Search(session, searchOptions);
 await search.fetch();
 ```
-See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki) for searchOptions.
+See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki#search-options) for searchOptions.
 Search again over a different period:
 ```js
 search.updateOptions({period:'year'});
@@ -61,7 +61,7 @@ await search.continued();
 const channel = new ytcog.Channel(session, channelOptions);
 await channel.fetch();
 ```
-See [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki) for channelOptions.
+See [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki#channel-options) for channelOptions.
 Get channel metadata with 
 ```js
 channel.updateOptions({order:'about'}); 
@@ -78,7 +78,7 @@ const video = new ytcog.Video(session, videoOptions);
 await video.fetch();
 await video.download([downloadOptions]);
 ```
-See [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki) for videoOptions.  
+See [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki#videodownload-options) for videoOptions.  
 A boolean function provides an inexpensive way to check if a video is still online:
 ```js
 let found = await video.imageOnline();
