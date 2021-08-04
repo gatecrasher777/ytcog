@@ -1,4 +1,4 @@
-# ytcog
+# ytcog (pre-release)
 
 YouTube innertube class library for node-js; sessions, players, searches, channels, videos and downloads.
 
@@ -45,7 +45,8 @@ A session object is required to create searches, channels and videos.
 const search = new ytcog.Search(session, searchOptions);
 await search.fetch();
 ```
-See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki#search-options) for searchOptions.
+See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki#search-options) for searchOptions.  
+
 Search again over a different period:
 ```js
 search.updateOptions({period:'year'});
@@ -61,7 +62,8 @@ await search.continued();
 const channel = new ytcog.Channel(session, channelOptions);
 await channel.fetch();
 ```
-See [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki#channel-options) for channelOptions.
+See [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki#channel-options) for channelOptions.  
+
 Get channel metadata with 
 ```js
 channel.updateOptions({order:'about'}); 
@@ -79,6 +81,7 @@ await video.fetch();
 await video.download([downloadOptions]);
 ```
 See [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki#videodownload-options) for videoOptions.  
+
 A boolean function provides an inexpensive way to check if a video is still online:
 ```js
 let found = await video.imageOnline();
@@ -87,11 +90,16 @@ Cancels the current download:
 ```js
 video.cancel();
 ```
-## Install
+## Install 
+
+When officially released:
 
 ```bash
 npm install ytcog
 ```
+
+or in the meantime just download from gihub and unzip.
+
 ## Roadmap
 
 There are some limitaions. ytcog does not currently handle playlists or download live videos. 
