@@ -107,7 +107,7 @@ There are some limitaions. ytcog does not currently handle playlists or download
 ## Disclaimer 
 YouTube can and will change how their innertube api works at any time. So potential disruptions are likely in the future. I will try to evolve and adapt this library asap, but without gaurantees. 
 
-## Acknowledgement to the following node-js projects on which ytfomo depends:
+### Acknowledgement to the following node-js projects on which ytfomo depends:
 
 * [miniget](https://github.com/fent/node-miniget) (robust web requests)
 * [ffmpeg-static](https://github.com/eugeneware/ffmpeg-static) (muxing video & audio when necessary)
