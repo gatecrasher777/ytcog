@@ -4,7 +4,7 @@ YouTube innertube class library for node-js; session, player, searches, channels
 
 ## Features
 
-* Simple, Efficient, Powerful and Fast. 
+* Simple, efficient, powerful and fast. 
 * No Google developer key required.  
 * To get the most from ytcog, all you need is an active age-verified YouTube account.
 * The innertube api is what the YouTube website itself uses to efficiently deliver  search, channel and video information (json only).
