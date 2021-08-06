@@ -91,6 +91,10 @@ Cancels the current download:
 ```js
 video.cancel();
 ```
+### Examples
+
+Check the examples folder for more clarity on usage of Session, Search, Channel and Video classes. 
+
 ## Install 
 
 When officially released:
