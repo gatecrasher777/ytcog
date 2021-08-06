@@ -93,7 +93,7 @@ video.cancel();
 ```
 ### Examples
 
-Check the examples folder for more clarity on usage of Session, Search, Channel and Video classes. 
+Check the [examples folder](https://github.com/gatecrasher777/ytcog/tree/main/examples) for more clarity on usage of Session, Search, Channel and Video classes. 
 
 ## Install 
 
