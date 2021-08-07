@@ -83,9 +83,9 @@ await video.download([downloadOptions]);
 ```
 See [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki#videodownload-options) for videoOptions.  
 
-A boolean function provides an inexpensive way to check if a video is still online:
+Running this HEAD request and testing the status/reason is an inexpensive way to check if a video is still online:
 ```js
-let found = await video.imageOnline();
+await video.imageOnline();
 ```
 Cancels the current download:
 ```js
