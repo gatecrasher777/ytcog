@@ -103,7 +103,7 @@ When officially released:
 npm install ytcog
 ```
 
-or in the meantime just download from gihub and unzip.
+or in the meantime just download from github and unzip.
 
 ## Roadmap
 
