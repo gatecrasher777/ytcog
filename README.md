@@ -1,4 +1,4 @@
-# ytcog (pre-release)
+# ytcog
 
 YouTube innertube class library for node-js; session, player, searches, channels, videos and downloads.
 
@@ -97,13 +97,9 @@ Check the [examples folder](https://github.com/gatecrasher777/ytcog/tree/main/ex
 
 ## Install 
 
-When officially released:
-
 ```bash
 npm install ytcog
 ```
-
-or in the meantime just download from github and unzip.
 
 ## Roadmap
 
