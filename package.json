@@ -1,7 +1,7 @@
 {
 	"name": "ytcog",
 	"version": "1.0.0",
-	"description": "YouTube innertube class library for node-js; sessions, players, searches, channels, videos and downloads.",
+	"description": "YouTube innertube class library for node-js; session, player, searches, channels, videos and downloads.",
 	"main": "./lib/index.js",
 	"repository": {
 		"type": "git",
@@ -13,10 +13,11 @@
 		"sanitize-filename": "^1.6.3"
 	},
 	"keywords": [
-		"YouTube",
+		"youtube",
 		"search",
-		"channel",
+		"channels",
 		"video",
+		"innertube",
 		"innertubeapi",
 		"player",
 		"session",
