@@ -4,9 +4,8 @@ YouTube innertube class library for node-js; session, player, searches, channels
 
 ## Features
 
-* Simple, efficient, powerful and fast. 
+* Simple, efficient, fast and powerful. 
 * No Google developer key required.  
-* To get the most from ytcog, all you need is an active age-verified YouTube account.
 * The innertube api is what the YouTube website itself uses to efficiently deliver  search, channel and video information (json only).
 * The downloader is a forked process allowing for concurrent non-blocking downloads.
 
@@ -16,7 +15,7 @@ YouTube innertube class library for node-js; session, player, searches, channels
 * __Player__ - used by the session object for deciphering, encoding and hashing - you would not normally need to use this directly.
 * __Search__ - fetch videos from specific search requests. 
 * __Channel__ - fetch metadata and videos from specific channels.
-* __Video__ - create video objects directly or from search and channel scan results - fetch metadata and stream information deciphered/encoded as necessary - bypass rate limiting and age restrictions - ensure reliable and fast downloads - no more 429s, 404s and 403s.
+* __Video__ - create video objects directly or from search and channel scan results - fetch metadata and stream information deciphered/encoded as necessary - ensure reliable and fast downloads.
 * __Download__ - a convenience object for easy once-off, non-session, downloads.
 
 See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki) for greater detail.
@@ -37,9 +36,29 @@ const ytcog = require('ytcog');
 const session = new ytcog.Session([cookie, userAgent]);
 await session.fetch();
 ```
-With a cookie, everything just works. Without it, some things will fail. In order to obtain your youtube cookie and user agent: Log onto YouTube in your browser. Goto settings > ... > developer tools. Refresh the page. Goto network>headers. Find the "www.youtube.com" entry. In the request headers you will find "cookie" and "user-agent". Pass these string values in your ytcog sessions. 
+__cookie__ is optional. With a cookie, everything will work. Without it, age-restricted video streams will not be retrieved and there might be some rate-limiting.
+__userAgent__ is optional. Since ytcog emulates a browser session, you can make all requests use your browser's user agent.  
+
+In order to obtain your youtube cookie and user agent: Log onto YouTube in your browser. Goto settings > ... > developer tools. Refresh the page. Goto network>headers. Find the "www.youtube.com" entry. In the request headers you will find "cookie" and "user-agent". Pass these string values in your ytcog sessions. 
 
 A session object is required to create searches, channels and videos.
+
+### Video
+```js
+const video = new ytcog.Video(session, videoOptions);
+await video.fetch();
+await video.download([downloadOptions]);
+```
+See [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki#videodownload-options) for videoOptions.  
+
+Running this HEAD request and testing the status/reason is an inexpensive way to check if a video is still online:
+```js
+await video.imageOnline();
+```
+Cancels the current download:
+```js
+video.cancel();
+```
 
 ### Search
 ```js
@@ -56,6 +75,15 @@ await search.fetch();
 If available, you can get an additional (+-20) results with each successive continuation:
 ```js
 await search.continued();    
+```
+Examine the results in an array of Video objects:
+```js
+search.videos.forEach((video)=>{
+    // do something with the results, like collect and display their streams
+    await video.fetch();
+    console.log(video.info());
+    console.log(video.streamInfo);
+});
 ```
 
 ### Channel
@@ -74,23 +102,11 @@ If available, you can get an additional (+-30) videos with each successive conti
 ```js
 await channel.continued();
 ```
+Examine the results in an array of Video objects:
+```js
+channel.videos.forEach((video)=>{...});
+```
 
-### Video
-```js
-const video = new ytcog.Video(session, videoOptions);
-await video.fetch();
-await video.download([downloadOptions]);
-```
-See [wiki](https://github.com/gatecrasher777/ytcog/wiki/ytcog-wiki#videodownload-options) for videoOptions.  
-
-Running this HEAD request and testing the status/reason is an inexpensive way to check if a video is still online:
-```js
-await video.imageOnline();
-```
-Cancels the current download:
-```js
-video.cancel();
-```
 ### Examples
 
 Check the [examples folder](https://github.com/gatecrasher777/ytcog/tree/main/examples) for more clarity on usage of Session, Search, Channel and Video classes. 
@@ -108,7 +124,7 @@ There are some limitaions. ytcog does not currently handle playlists or download
 ## Disclaimer 
 YouTube can and will change how their innertube api works at any time. So potential disruptions are likely in the future. I will try to evolve and adapt this library asap, but without gaurantees. 
 
-### Acknowledgement to the following node-js projects on which ytfomo depends:
+### Acknowledgement to the following node-js projects on which ytcog depends:
 
 * [miniget](https://github.com/fent/node-miniget) (robust web requests)
 * [ffmpeg-static](https://github.com/eugeneware/ffmpeg-static) (muxing video & audio when necessary)
