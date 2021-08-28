@@ -119,7 +119,7 @@ npm install ytcog
 
 ## Roadmap
 
-There are some limitaions. ytcog does not currently handle playlists or download live videos. 
+There are some limitations. ytcog does not currently handle playlists or download live videos. 
 
 ## Disclaimer 
 YouTube can and will change how their innertube api works at any time. So potential disruptions are likely in the future. I will try to evolve and adapt this library asap, but without gaurantees. 
