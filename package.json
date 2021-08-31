@@ -1,6 +1,6 @@
 {
 	"name": "ytcog",
-	"version": "1.0.1",
+	"version": "1.0.3",
 	"description": "YouTube innertube class library for node-js; session, player, searches, channels, videos and downloads.",
 	"main": "./lib/index.js",
 	"repository": {
