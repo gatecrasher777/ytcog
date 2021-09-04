@@ -7,7 +7,7 @@ YouTube innertube class library for node-js; session, player, searches, channels
 * Simple, efficient, fast and powerful. 
 * No Google developer key required.  
 * The innertube api is what the YouTube website itself uses to efficiently deliver  search, channel and video information (json only).
-* The downloader is a forked process allowing for concurrent non-blocking downloads.
+* The downloader is a forked process allowing for concurrent, fast, non-blocking, high quality downloads.
 
 ## Classes
 
@@ -119,10 +119,15 @@ npm install ytcog
 
 ## Roadmap
 
-There are some limitations. ytcog does not currently handle playlists or download live videos. 
+There are some limitations. ytcog does not currently handle playlists or download live (real time) videos. As well as addressing these two issues, would like to be able to search for and create channel and playlist objects.  
 
 ## Disclaimer 
 YouTube can and will change how their innertube api works at any time. So potential disruptions are likely in the future. I will try to evolve and adapt this library asap, but without gaurantees. 
+
+## Command Line Interface
+Try out the command line interface (CLI) to this library:
+
+* [ytcog-dl](https://github.com/gatecrasher777/ytcog-dl)
 
 ### Acknowledgement to the following node-js projects on which ytcog depends:
 
