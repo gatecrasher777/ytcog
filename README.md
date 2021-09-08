@@ -83,9 +83,9 @@ await search.fetch({items:'movies'});
 
 Iterate through the results with:
 ```js
-search.playlists.forEach((p)=>{...});
-search.channels.forEach((c)=>{...});
-search.videos.forEach((v)=>{...});
+search.playlists.forEach((playlist)=>{...});
+search.channels.forEach((channel)=>{...});
+search.videos.forEach((video)=>{...});
 ```
 
 ### Channel
@@ -112,9 +112,9 @@ await channel.fetch({items: 'search', query: 'vlogs'});
 
 Iterate through the results with:
 ```js
-channel.videos.forEach((v)=>{...});
-channel.playlists.forEach((p)=>{...});
-channel.channels.forEach((c)=>{...});
+channel.videos.forEach((video)=>{...});
+channel.playlists.forEach((playlist)=>{...});
+channel.channels.forEach((chan)=>{...});
 ```
 
 ### Playlist
@@ -122,7 +122,7 @@ channel.channels.forEach((c)=>{...});
 const playlist = new ytcog.Playlist(session, playlistOptions);
 await playlist.fetch();
 ```
-See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Playlist-Options#playlist-options) for playlistOptions.
+See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Playlist-Options#playlist-options) for playlist options.
 
 Get 100 videos from a playlist
 ```js
@@ -167,7 +167,8 @@ Try out the command line interface (CLI) to this library:
 
 * [ytcog-dl](https://github.com/gatecrasher777/ytcog-dl)
 
-### Acknowledgement to the following node-js projects on which ytcog has a dependency:
+## Acknowledgement 
+To the following node-js projects on which ytcog has a dependency:
 
 * [miniget](https://github.com/fent/node-miniget) (robust web requests)
 * [ffmpeg-static](https://github.com/eugeneware/ffmpeg-static) (muxing video and audio downloads; embedding metadata as necessary)
