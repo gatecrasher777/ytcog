@@ -17,6 +17,7 @@ let app = {
 
 async function run() {
     let session = new ytcog.Session(app.cookie,app.userAgent);
+    session.debugOn = true;
     await session.fetch();
     console.log(`Session status: ${session.status} (${session.reason})`);
     if (session.status == 'OK') {

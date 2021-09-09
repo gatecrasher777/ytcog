@@ -1,4 +1,4 @@
-// ytcog - innertube library - example to test channel class
+// ytcog - innertube library - examples to test channel class
 // (c) 2021 gatecrasher777
 // https://github.com/gatecrasher777/ytcog
 // MIT Licenced
@@ -11,10 +11,13 @@ const fs = require('fs');
 let app = {
     cookie: '',
     userAgent: '',
+    ignore: ['cookie','userAgent','options','sapisid','status','reason','cancelled'], //don't include these properties in info calls
     test_options: {
-        id: 'UCG5qGWdu8nIRZqJ_GgDwQ-w', //any channel id
-        order: 'about', // new, old, views, about
-        quantity: 50 //number of videos to fetch. You can get further videos (if available) with subsequent channel.continued() calls 
+        id: 'UCG5qGWdu8nIRZqJ_GgDwQ-w', //any channel id  
+        items: 'about', //videos, playlists, channels, about, search
+        order: 'new', // new (videos/playlists), old (videos), views (videos), updated (playlists)
+        quantity: 60, // number of results to fetch. You can get further videos (if available) with subsequent channel.continued() calls 
+        query: '' //items=search only
     }
 }
 
@@ -23,35 +26,104 @@ async function run() {
     await session.fetch();
     console.log(`Session status: ${session.status} (${session.reason})`);
     if (session.status == 'OK') {
-        let channel = new ytcog.Channel(session,app.test_options);       
-        console.log('\nFetch channel profile data (order: about)');
+        let channel = new ytcog.Channel(session,app.test_options);      
+        channel.debugOn = true; 
+        console.log('\nFetch channel profile data (items: about)');
         await channel.fetch();
-        console.log(`Channel status: ${session.status} (${session.reason})`);
+        console.log(`Channel status: ${channel.status} (${channel.reason})`);
         if (channel.status=='OK') {
-            console.log('\nFetch latest Channel videos (order: new)');
-            channel.updateOptions({order:'new'});
-            await channel.fetch();
-            console.log(`Channel status: ${session.status} (${session.reason})`);
+            console.log('\nFetch latest Channel videos');
+            await channel.fetch({items:'videos'});
+            console.log(`Channel status: ${channel.status} (${channel.reason})`);
             if (channel.status == 'OK') {
-                console.log(`\nFound ${channel.videos.length} videos for ${channel.author}`);
+                console.log(`\nFound ${channel.results.length} results for ${channel.author}`);
                 console.log('Want some more? Will continue...');
                 await channel.continued();
-                console.log(`Channel status: ${session.status} (${session.reason})`);
+                console.log(`Channel status: ${channel.status} (${channel.reason})`);
                 if (channel.status == 'OK') {
-                    console.log(`\nFound ${channel.videos.length} videos for ${channel.author}`);
+                    console.log(`\nFound ${channel.results.length} video results for ${channel.author}`);
                     console.log('\nChannel info/results to ./examples/channel_results.json');
                     let output = {
-                        channel: channel.info(['cookie','userAgent','sapisid']),
+                        channel: channel.info(app.ignore),
                         results : []
                     }
-                    channel.videos.forEach((video)=>{
-                        output.results.push(video.info(['cookie','userAgent','options','sapisid','status','reason','cancelled']));
+                    channel.results.forEach((video)=>{
+                        output.results.push(video.info(app.ignore));
                     });
                     fs.writeFileSync('./examples/channel_results.json',ut.jsp(output),'utf8');
-                    console.log('Channel json to ./examples/channel.json');
+                    console.log('Raw Channel json to ./examples/channel.json');
+                    fs.writeFileSync('./examples/channel.json',ut.jsp(channel.data),'utf8');
+                    console.log('\n\nFetch 30 channel playlists (most recently updated)...');
+                    await channel.fetch({items:'playlists',order:'updated',quantity:30});
+                    console.log(`Channel status: ${channel.status} (${channel.reason})`);
+                    if (channel.status == 'OK') {
+                        console.log(`\nFound ${channel.results.length} playlist results for ${channel.author}`);
+                        console.log('\nChannel info/results to ./examples/channel_playlists.json');
+                        let output = {
+                            channel: channel.info(app.ignore),
+                            results : []
+                        }
+                        channel.results.forEach((item)=>{
+                            output.results.push(item.info(app.ignore));
+                        });
+                        fs.writeFileSync('./examples/channel_playlists.json',ut.jsp(output),'utf8');
+                        console.log('Raw Channel json to ./examples/channelP.json');
+                        fs.writeFileSync('./examples/channelP.json',ut.jsp(channel.data),'utf8');
+                        console.log('\n\nFetch 20 related channels...');
+                        await channel.fetch({items:'channels',order:'new',quantity:20});
+                        console.log(`Channel status: ${channel.status} (${channel.reason})`);
+                        if (channel.status == 'OK') {
+                            console.log(`\nFound ${channel.results.length} channel results for ${channel.author}`);
+                            console.log('\nChannel info/results to ./examples/channel_channels.json');
+                            let output = {
+                                channel: channel.info(app.ignore),
+                                results : []
+                            }
+                            channel.results.forEach((item)=>{
+                                output.results.push(item.info(app.ignore));
+                            });
+                            fs.writeFileSync('./examples/channel_channels.json',ut.jsp(output),'utf8');
+                            console.log('Raw Channel json to ./examples/channelC.json');
+                            fs.writeFileSync('./examples/channelC.json',ut.jsp(channel.data),'utf8');
+                            console.log('\n\nSearch for 20 videos in the channel ...');
+                            await channel.fetch({items:'search',query:'Chelsea',quantity:20});
+                            console.log(`Channel status: ${channel.status} (${channel.reason})`);
+                            if (channel.status == 'OK') {
+                                console.log(`\nFound ${channel.results.length} search results in ${channel.author} for ${channel.options.query}`);
+                                console.log('\nChannel info/results to ./examples/channel_search.json');
+                                let output = {
+                                    channel: channel.info(app.ignore),
+                                    results : []
+                                }
+                                channel.results.forEach((item)=>{
+                                    output.results.push(item.info(app.ignore));
+                                });
+                                fs.writeFileSync('./examples/channel_search.json',ut.jsp(output),'utf8');
+                                console.log('Raw Channel json to ./examples/channelS.json');
+                                fs.writeFileSync('./examples/channelS.json',ut.jsp(channel.data),'utf8');
+                            } else {
+                                console.log('Raw Channel json to ./examples/channelS.json');
+                                fs.writeFileSync('./examples/channelS.json',ut.jsp(channel.data),'utf8');
+                            }
+                        } else {
+                            console.log('Raw Channel json to ./examples/channelC.json');
+                            fs.writeFileSync('./examples/channelC.json',ut.jsp(channel.data),'utf8');
+                        }
+                    } else {
+                        console.log('Raw Channel json to ./examples/channelP.json');
+                        fs.writeFileSync('./examples/channelP.json',ut.jsp(channel.data),'utf8'); 
+                    }
+                } else {
+                    console.log('Raw Channel json to ./examples/channel.json');
                     fs.writeFileSync('./examples/channel.json',ut.jsp(channel.data),'utf8');
                 }
+            } else {
+                console.log('Raw Channel json to ./examples/channel.json');
+                fs.writeFileSync('./examples/channel.json',ut.jsp(channel.data),'utf8');
             }
+        } else {
+            console.log('Raw Channel json to ./examples/channelA.json');
+            fs.writeFileSync('./examples/channelA.json',ut.jsp(channel.data),'utf8');
         }
     }
 }
