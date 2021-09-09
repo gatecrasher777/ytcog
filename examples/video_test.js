@@ -17,9 +17,9 @@ let app = {
         published: 0, //optional published timestamp
         path: './examples', //supplay a download folder for downloaded video
         filename: '${author}_${datetime}_${title}_${id}_${videoQuality}_${videoCodec}_${audioCodec}', //supply a optional filename, with placeholders, but do not include an extension.
-        container: 'mkv',  //any, mp4, webm, mkv 
+        container: 'any',  //any, mp4, webm, mkv 
         videoQuality: '1080p', //desired quality: highest, 1080p, 720p, 480p, medium, 360p, 240p, 144p, lowest
-        audioQuality: 'medium', //desired audio quality: high, medium, low
+        audioQuality: 'medium', //desired audio quality: highest, medium, lowest
         mediaBitrate: 'highest', //for streams of equal resolution/quality pick the highest or lowest bitrate.
         videoFormat: -1, //Specific video format (-1 use above options to rank video streams)
         audioFormat: -1, //Specific audio format (-1 use above options to rank audio streams)
