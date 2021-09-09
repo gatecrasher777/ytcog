@@ -29,10 +29,9 @@ const ytcog = require('ytcog');
 await ytcog.dl(videoOptions[,cookie,userAgent]);
 ```
 
-See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#Options) for videoOptions.   
-
-__cookie__ is optional. With a cookie, everything will work. Without it, age-restricted video streams will not be retrieved and there might be some rate-limiting (although none reported so far)  
-__userAgent__ is optional. Since ytcog emulates a browser session, you can make all requests use your browser's user agent.  
+__videoOptions__ (object) See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#Options) for alll videoOptions.  
+__cookie__ (string) is optional. With a cookie, everything will work. Without it, age-restricted video streams will not be retrieved and there might be some rate-limiting (although none reported so far)  
+__userAgent__ (string) is optional. Since ytcog emulates a browser session, you can make all requests use your browser's user agent.  
 
 ### Session
 
@@ -52,8 +51,8 @@ A session object is required to create searches, channels, playlists and videos.
 const search = new ytcog.Search(session, searchOptions);
 await search.fetch();
 ```
-
-See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/Search#Options) for all search options.  
+__session__ (Session) the session object  
+__searchOptions__ (Object) See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/Search#Options) for all search options.  
 
 Search again with different options:
 
@@ -80,7 +79,13 @@ await search.fetch({items:'channels'});
 await search.fetch({items:'movies'});
 ```
 
-Iterate through the results with:
+Iterate through the current results with:
+
+```js
+search.results.forEach((item)=>{});
+```
+
+Or the accumulated results
 
 ```js
 search.playlists.forEach((playlist)=>{...});
@@ -95,7 +100,7 @@ const channel = new ytcog.Channel(session, channelOptions);
 await channel.fetch();
 ```
 
-See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Channel#Options) for channel options.
+__channelOptions__ See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Channel#Options) for all channel options.
 
 Get channel playlists 
 
@@ -118,9 +123,10 @@ await channel.fetch({items: 'search', query: 'vlogs'});
 Iterate through the results with:
 
 ```js
-channel.videos.forEach((video)=>{...});
-channel.playlists.forEach((playlist)=>{...});
-channel.channels.forEach((chan)=>{...});
+search.results.forEach((item)=>{});  //current
+channel.videos.forEach((video)=>{...}); //accumulated
+channel.playlists.forEach((playlist)=>{...}); //accumulated
+channel.channels.forEach((chan)=>{...}); //accumulated
 ```
 
 ### Playlist
@@ -130,7 +136,7 @@ const playlist = new ytcog.Playlist(session, playlistOptions);
 await playlist.fetch();
 ```
 
-See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Playlist#Options) for playlist options.
+__playlistOptions__ See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Playlist#Options) for all playlist options.
 
 Get 100 videos from a playlist
 ```js
@@ -142,9 +148,10 @@ Get all the videos from a playlist
 await playlist.fetch({quantity: playlist.videoCount});
 ```
 
-Examine the results in an array of Video objects:
+Iterate through the results with:
 ```js
-playlist.videos.forEach((video)=>{...});
+playlist.results.forEach((video)=>{...}) //current
+playlist.videos.forEach((video)=>{...}); //accumulated
 ```
 
 ### Video
@@ -155,7 +162,7 @@ await video.fetch();
 if (video.status == 'OK') await video.download();
 ```
 
-See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#Options) for all videoOptions.  
+__videoOptions__ See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#Options) for all video options. 
 
 ### Examples
 
@@ -178,14 +185,17 @@ npm install ytcog
 ```
 
 ## Disclaimer 
+
 YouTube can and will change how their innertube api works at any time. So potential disruptions are likely in the future. I will try to evolve and adapt this library asap, but without gaurantees. 
 
 ## Command Line Interface
+
 Try out the command line interface (CLI) to this library:
 
 * [ytcog-dl](https://github.com/gatecrasher777/ytcog-dl)
 
 ## Acknowledgement 
+
 To the following node-js projects on which ytcog has a dependency:
 
 * [miniget](https://github.com/fent/node-miniget) (robust web requests)
