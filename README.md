@@ -27,12 +27,13 @@ See the [wiki](https://github.com/gatecrasher777/ytcog/wiki) for greater detail.
 
 ```js
 const ytcog = require('ytcog');
-await ytcog.dl(videoOptions[,cookie,userAgent]);
+await ytcog.dl(videoOptions[, cookie, userAgent, minigetOptions]);
 ```
 
 __videoOptions__ (object) See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#Options) for all videoOptions.  
 __cookie__ (string) is optional. With a cookie, everything will work. Without it, age-restricted video streams will not be retrieved and there might be some rate-limiting (although none reported so far)  
 __userAgent__ (string) is optional. Since ytcog emulates a browser session, you can make all requests use your browser's user agent.  
+__minigetOptions__ (object) ytcog uses [miniget](https://github.com/fent/node-miniget) for all http(s) requests. You can use this parameter to add to or overwrite the default options employed by ytcog.
 
 NB: If you are downloading multiple videos (i.e. from search results, playlists or channels) then maintianing a session and using video.download() is much more efficient than running ytcog.dl() on each video.
 
@@ -40,12 +41,13 @@ NB: If you are downloading multiple videos (i.e. from search results, playlists 
 
 ```js
 const ytcog = require('ytcog');
-const session = new ytcog.Session([cookie, userAgent]);
+const session = new ytcog.Session([cookie, userAgent, minigetOptions]);
 await session.fetch();
 console.log(`session status: ${session.status}`);
 ```
 
 __cookie__ and __userAgent__ are optional, but in order to obtain them log onto YouTube in your browser. Goto settings > ... > developer tools. Refresh the page. Goto network>headers. Find the "www.youtube.com" entry. In the request headers you will find "cookie" and "user-agent". Pass these string values in your ytcog sessions. 
+__minigetOptions__ (object) ytcog uses [miniget](https://github.com/fent/node-miniget) for all http(s) requests. You can use this parameter to add to or overwrite the default options employed by ytcog.
 
 A session object is required to create search, channel, playlist and video objects.
 
