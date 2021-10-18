@@ -215,5 +215,6 @@ Try out the command line interface (CLI) to this library:
 To the following node-js projects on which ytcog has a dependency:
 
 * [miniget](https://github.com/fent/node-miniget) (robust web requests)
+* [vm2](https://github.com/patriksimek/vm2) (bullet-proof execution of 3rd party javascript)
 * [ffmpeg-static](https://github.com/eugeneware/ffmpeg-static) (muxing video and audio downloads; embedding metadata as necessary)
 * [sanitize-filename](https://github.com/parshap/node-sanitize-filename) (as the name suggests)
