@@ -10,7 +10,8 @@
 	"dependencies": {
 		"ffmpeg-static": "^4.2.7",
 		"miniget": "^4.2.0",
-		"sanitize-filename": "^1.6.3"
+		"sanitize-filename": "^1.6.3",
+		"vm2": "^3.9.5"
 	},
 	"keywords": [
 		"youtube",
