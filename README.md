@@ -184,7 +184,7 @@ __videoOptions__ See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#O
 
 Check the [examples folder](https://github.com/gatecrasher777/ytcog/tree/main/examples) for more clarity on usage of Session, Search, Channel, Playlist and Video classes. 
 
-To tun the examples:
+To run the examples:
 ```bash
 ~ytcog$ node examples/session_test
 ~ytcog$ node examples/search_test [query]
