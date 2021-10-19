@@ -37,9 +37,9 @@ let app = {
 		// Metadata to add to downloaded media
 		metadata: 'author,title,published',
 		// supply a callback for download progress;
-		progress: (prg, siz) => {
+		progress: (prg, siz, tot) => {
 			app.downloaded += siz;
-			process.stdout.write(`Progress ${Math.floor(prg)}% - ${app.downloaded}   \r`);
+			process.stdout.write(`Progress ${Math.floor(prg)}% - ${app.downloaded}/${tot}   \r`);
 		},
 		// overwrite existing downloads yes/no
 		overwrite: 'yes',
