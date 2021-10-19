@@ -37,9 +37,9 @@ let app = {
 		// Metadata to add to downloaded media
 		metadata: 'author,title,published',
 		// supply a callback for download progress;
-		progress: (prg, siz) => {
+		progress: (prg, siz, tot) => {
 			app.downloaded += siz;
-			process.stdout.write(`Progress ${Math.floor(prg)}% - ${app.downloaded} bytes  \r`);
+			process.stdout.write(`Progress ${Math.floor(prg)}% - ${app.downloaded}/${tot} bytes  \r`);
 		},
 		// whether existing files are overwritten
 		overwrite: 'yes',
@@ -86,10 +86,10 @@ async function run() {
 						console.log(`\nDownloading audio only`);
 						video.updateOptions(app.test_options);
 						app.downloaded = 0;
-						await video.download({ videoQuality: 'none' });
+						await video.download({ videoQuality: 'none', container: 'mp3' });
 						console.log(`\n\nVideo status: ${video.status} (${video.reason})`);
 						if (video.downloaded) {
-							console.log(`Success - audio only saved to ${video.fn}`);
+							console.log(`Success - audio only (mp3) saved to ${video.fn}`);
 						}
 					}
 				}
