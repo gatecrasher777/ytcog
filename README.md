@@ -36,7 +36,7 @@ await ytcog.dl(videoOptions[, cookie, userAgent, minigetOptions]);
 
 ```userAgent```(string) is optional. Since ytcog emulates a browser session, you can make all requests use your browser's user agent.  If you supply a userAgent, you must supply a cookie, even if it is an empty string.  
 
-```proxy``` (string) is optional. Provide a proxt agent string for all session https requests, i.e:  
+```proxy``` (string) is optional. Provide a proxy agent string for all session https requests, i.e:  
 ```await ytcog.dl({id:'5qwDrjTinMk'},'','','http://127.0.0.1:8000');```  
 
 NB: If you are downloading multiple videos (i.e. from search results, playlists or channels) then maintianing a session and using video.download() is much more efficient than running ytcog.dl() on each video.
@@ -220,3 +220,4 @@ To the following node-js projects on which ytcog has a dependency:
 * [vm2](https://github.com/patriksimek/vm2) (bullet-proof execution of 3rd party javascript)
 * [ffmpeg-static](https://github.com/eugeneware/ffmpeg-static) (muxing video and audio downloads; embedding metadata as necessary)
 * [sanitize-filename](https://github.com/parshap/node-sanitize-filename) (as the name suggests)
+* [proxy-agent](https://github.com/TooTallNate/node-proxy-agent) (enables requests via a proxy)
