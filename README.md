@@ -12,12 +12,12 @@ YouTube innertube class library for node-js; session, searches, channels, playli
 
 ## Classes
 
-* __Session__ - manage your Youtube session/player - deciphering, encoding and hashing - enables seemless search, channel, playlist, video and download requests.
-* __Search__ - fetch videos, playlists and channels from specific search requests. 
-* __Channel__ - fetch metadata, videos, playlists, associated channels or search specific channels. 
-* __Playlist__ - fetch videos from specific playlists 
-* __Video__ - fetch metadata and stream information deciphered/encoded to avoid throttling - ensure reliable and fast downloads.
-* __Download__ - a convenience object for easy once-off, sessionless, downloads.
+* ```Session``` - manage your Youtube session/player - deciphering, encoding and hashing - enables seemless search, channel, playlist, video and download requests.
+* ```Search``` - fetch videos, playlists and channels from specific search requests. 
+* ```Channel``` - fetch metadata, videos, playlists, associated channels or search specific channels. 
+* ```Playlist``` - fetch videos from specific playlists 
+* ```Video``` - fetch metadata and stream information deciphered/encoded to avoid throttling - ensure reliable and fast downloads.
+* ```Download``` - a convenience object for easy once-off, sessionless, downloads.
 
 See the [wiki](https://github.com/gatecrasher777/ytcog/wiki) for greater detail.
 
@@ -36,7 +36,8 @@ await ytcog.dl(videoOptions[, cookie, userAgent, minigetOptions]);
 
 ```userAgent```(string) is optional. Since ytcog emulates a browser session, you can make all requests use your browser's user agent.  If you supply a userAgent, you must supply a cookie, even if it is an empty string.  
 
-```minigetOptions``` (object) ytcog uses [miniget](https://github.com/fent/node-miniget) for all http(s) requests. You can use this optional parameter to add to or overwrite the default options employed by ytcog by supplying an options object.  
+```proxy``` (string) is optional. Provide a proxt agent string for all session https requests, i.e:  
+```await ytcog.dl({id:'5qwDrjTinMk'},'','','http://127.0.0.1:8000');```  
 
 NB: If you are downloading multiple videos (i.e. from search results, playlists or channels) then maintianing a session and using video.download() is much more efficient than running ytcog.dl() on each video.
 
@@ -44,14 +45,15 @@ NB: If you are downloading multiple videos (i.e. from search results, playlists 
 
 ```js
 const ytcog = require('ytcog');
-const session = new ytcog.Session([cookie, userAgent, minigetOptions]);
+const session = new ytcog.Session([cookie, userAgent, proxy]);
 await session.fetch();
 console.log(`session status: ${session.status}`);
 ```
 
 ```cookie``` and ```userAgent``` are optional, but in order to obtain them log onto YouTube in your browser. Goto settings > ... > developer tools. Refresh the page. Goto network>headers. Find the "www.youtube.com" entry. In the request headers you will find "cookie" and "user-agent". Pass these string values into your ytcog sessions.  If you supply a userAgent, you must supply a cookie, even if it is an empty string.
 
-```minigetOptions``` (object) ytcog uses [miniget](https://github.com/fent/node-miniget) for all http(s) requests. You can use this parameter to add to or overwrite the default options employed by ytcog.
+```proxy``` (string) is optional. Provide a proxt agent string for all session https requests, i.e:  
+```let session = new ytcog.session('','','http://127.0.0.1:8000')```  
 
 A session object is required to create search, channel, playlist and video objects.
 
