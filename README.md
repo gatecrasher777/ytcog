@@ -30,13 +30,13 @@ const ytcog = require('ytcog');
 await ytcog.dl(videoOptions[, cookie, userAgent, minigetOptions]);
 ```
 
-__videoOptions__ (object) See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#Options) for all videoOptions.  
+```videoOptions``` (object) See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#Options) for all videoOptions.  
 
-__cookie__ (string) is optional. With a cookie, everything will work. Without it, age-restricted video streams will not be retrieved and there might be some rate-limiting (although none reported so far)
+```cookie``` (string) is optional. With a cookie, everything will work. Without it, age-restricted video streams will not be retrieved and there might be some rate-limiting (although none reported so far)
 
-__userAgent__ (string) is optional. Since ytcog emulates a browser session, you can make all requests use your browser's user agent.  If you supply a userAgent, you must supply a cookie, even if it is an empty string.  
+```userAgent```(string) is optional. Since ytcog emulates a browser session, you can make all requests use your browser's user agent.  If you supply a userAgent, you must supply a cookie, even if it is an empty string.  
 
-__minigetOptions__ (object) ytcog uses [miniget](https://github.com/fent/node-miniget) for all http(s) requests. You can use this optional parameter to add to or overwrite the default options employed by ytcog by supplying an options object.  
+```minigetOptions``` (object) ytcog uses [miniget](https://github.com/fent/node-miniget) for all http(s) requests. You can use this optional parameter to add to or overwrite the default options employed by ytcog by supplying an options object.  
 
 NB: If you are downloading multiple videos (i.e. from search results, playlists or channels) then maintianing a session and using video.download() is much more efficient than running ytcog.dl() on each video.
 
@@ -49,9 +49,9 @@ await session.fetch();
 console.log(`session status: ${session.status}`);
 ```
 
-__cookie__ and __userAgent__ are optional, but in order to obtain them log onto YouTube in your browser. Goto settings > ... > developer tools. Refresh the page. Goto network>headers. Find the "www.youtube.com" entry. In the request headers you will find "cookie" and "user-agent". Pass these string values into your ytcog sessions.  If you supply a userAgent, you must supply a cookie, even if it is an empty string.
+```cookie``` and ```userAgent``` are optional, but in order to obtain them log onto YouTube in your browser. Goto settings > ... > developer tools. Refresh the page. Goto network>headers. Find the "www.youtube.com" entry. In the request headers you will find "cookie" and "user-agent". Pass these string values into your ytcog sessions.  If you supply a userAgent, you must supply a cookie, even if it is an empty string.
 
-__minigetOptions__ (object) ytcog uses [miniget](https://github.com/fent/node-miniget) for all http(s) requests. You can use this parameter to add to or overwrite the default options employed by ytcog.
+```minigetOptions``` (object) ytcog uses [miniget](https://github.com/fent/node-miniget) for all http(s) requests. You can use this parameter to add to or overwrite the default options employed by ytcog.
 
 A session object is required to create search, channel, playlist and video objects.
 
@@ -61,8 +61,8 @@ A session object is required to create search, channel, playlist and video objec
 const search = new ytcog.Search(session, searchOptions);
 await search.fetch();
 ```
-__session__ (Session) the session object, see above.
-__searchOptions__ (Object) See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/Search#Options) for all search options.  
+```session``` (Object) the session object, see above.
+```searchOptions``` (Object) See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/Search#Options) for all search options.  
 
 Search again with different options:
 
@@ -110,7 +110,7 @@ const channel = new ytcog.Channel(session, channelOptions);
 await channel.fetch();
 ```
 
-__channelOptions__ See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Channel#Options) for all channel options.
+```channelOptions``` See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Channel#Options) for all channel options.
 
 Get channel playlists 
 
@@ -146,7 +146,7 @@ const playlist = new ytcog.Playlist(session, playlistOptions);
 await playlist.fetch();
 ```
 
-__playlistOptions__ See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Playlist#Options) for all playlist options.
+```playlistOptions``` See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Playlist#Options) for all playlist options.
 
 Get 100 videos from a playlist
 ```js
@@ -178,7 +178,7 @@ const video = new ytcog.Video(session, videoOptions);
 await video.download();
 ```
 
-__videoOptions__ See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#Options) for all video options. 
+```videoOptions``` See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#Options) for all video options. 
 
 ### Examples
 
