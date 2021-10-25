@@ -9,8 +9,13 @@ const fs = require('fs');
 
 // User editable data:
 let app = {
+	// logged-in cookie string
 	cookie: '',
+	// browser user agent
 	userAgent: '',
+	// proxy agent string
+	proxy: '',
+	// info fields to ignore
 	ignore: ['cookie', 'userAgent', 'options', 'sapisid', 'status', 'reason',
 		'cancelled', 'canEmbed', 'isLive', 'debugOn'],
 	test_options: {
@@ -23,7 +28,7 @@ let app = {
 };
 
 async function run() {
-	let session = new ytcog.Session(app.cookie, app.userAgent);
+	let session = new ytcog.Session(app.cookie, app.userAgent, app.cookie);
 	await session.fetch();
 	console.log(`Session status: ${session.status} (${session.reason})`);
 	if (session.status === 'OK') {

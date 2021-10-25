@@ -12,6 +12,8 @@ let app = {
 	cookie: '',
 	// supply browser user agent
 	userAgent: '',
+	// proxy agent string
+	proxy: '',
 	debug: true,
 	options: {
 		// any video id, mandatory propery
@@ -51,6 +53,7 @@ async function run() {
 		app.options,
 		app.cookie,
 		app.userAgent,
+		app.proxy,
 		app.debug,
 	);
 }

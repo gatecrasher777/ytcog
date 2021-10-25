@@ -10,12 +10,18 @@ const fs = require('fs');
 // User editable data:
 let app = {
 	downloaded: 0,
+	// logged-in cookie string
 	cookie: '',
+	// browser user agent
 	userAgent: '',
+	// proxy agent string
+	proxy: '',
+	// info fields to ignore
 	ignore: ['cookie', 'userAgent', 'options', 'sapisid', 'status', 'reason', 'cancelled'],
+	// video options
 	test_options: {
 		// any video id
-		id: 'UoHEvzQc0O4',
+		id: '5qwDrjTinMk',
 		// optional published timestamp
 		published: 0,
 		// supplay a download folder for downloaded video
@@ -36,6 +42,8 @@ let app = {
 		audioFormat: -1,
 		// Metadata to add to downloaded media
 		metadata: 'author,title,published',
+		// make srt subtitles if captions are available, chose language codes, comma separated
+		subtitles: 'en,es,ja',
 		// supply a callback for download progress;
 		progress: (prg, siz, tot) => {
 			app.downloaded += siz;
@@ -47,7 +55,7 @@ let app = {
 };
 
 async function run() {
-	let session = new ytcog.Session(app.cookie, app.userAgent);
+	let session = new ytcog.Session(app.cookie, app.userAgent, app.proxy);
 	await session.fetch();
 	console.log(`Session status: ${session.status} (${session.reason})`);
 	if (session.status === 'OK') {
@@ -65,6 +73,7 @@ async function run() {
 			console.log('\nAvailable media streams:');
 			console.log(video.streamInfo);
 			console.log(`\nStreams expire in ${ut.secDur(video.timeToExpiry, 'hms')}`);
+			console.log(video.captions);
 			console.log(`\nDownloading test video using given test options`);
 			await video.download();
 			console.log(`\n\nVideo status: ${video.status} (${video.reason})`);
