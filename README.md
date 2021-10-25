@@ -27,17 +27,19 @@ See the [wiki](https://github.com/gatecrasher777/ytcog/wiki) for greater detail.
 
 ```js
 const ytcog = require('ytcog');
-await ytcog.dl(videoOptions[, cookie, userAgent, minigetOptions]);
+await ytcog.dl(videoOptions[, cookie, userAgent, proxy, debug]);
 ```
 
 ```videoOptions``` (object) See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#Options) for all videoOptions.  
 
 ```cookie``` (string) is optional. With a cookie, everything will work. Without it, age-restricted video streams will not be retrieved and there might be some rate-limiting (although none reported so far)
 
-```userAgent```(string) is optional. Since ytcog emulates a browser session, you can make all requests use your browser's user agent.  If you supply a userAgent, you must supply a cookie, even if it is an empty string.  
+```userAgent``` (string) is optional. Since ytcog emulates a browser session, you can make all requests use your browser's user agent.  If you supply a userAgent, you must supply a cookie, even if it is an empty string.  
 
 ```proxy``` (string) is optional. Provide a proxy agent string for all session https requests, i.e:  
 ```await ytcog.dl({id:'5qwDrjTinMk'},'','','http://127.0.0.1:8000');```  
+
+```debug``` (boolean) if true debug information is sent to the console.
 
 NB: If you are downloading multiple videos (i.e. from search results, playlists or channels) then maintianing a session and using video.download() is much more efficient than running ytcog.dl() on each video.
 
@@ -63,7 +65,9 @@ A session object is required to create search, channel, playlist and video objec
 const search = new ytcog.Search(session, searchOptions);
 await search.fetch();
 ```
+
 ```session``` (Object) the session object, see above.
+
 ```searchOptions``` (Object) See the [wiki](https://github.com/gatecrasher777/ytcog/wiki/Search#Options) for all search options.  
 
 Search again with different options:
@@ -188,12 +192,12 @@ Check the [examples folder](https://github.com/gatecrasher777/ytcog/tree/main/ex
 
 To run the examples:
 ```bash
-~ytcog$ node examples/session_test
-~ytcog$ node examples/search_test [query]
-~ytcog$ node examples/channel_test [id]
-~ytcog$ node examples/playlist_test [id]
-~ytcog$ node examples/video_test [id]
-~ytcog$ node examples/dl_test [id]
+ytcog> node examples/session_test
+ytcog> node examples/search_test [query]
+ytcog> node examples/channel_test [id]
+ytcog> node examples/playlist_test [id]
+ytcog> node examples/video_test [id]
+ytcog> node examples/dl_test [id]
 ```
 
 ## Install 
