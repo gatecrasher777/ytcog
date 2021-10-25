@@ -9,15 +9,20 @@ const fs = require('fs');
 
 // User editable data:
 let app = {
+	// logged-in cookie string
 	cookie: '',
+	// browser user agent
 	userAgent: '',
+	// proxy agent string
+	proxy: '',
+	// info fields to ignore
 	test_sig: 'bAOWAOq0QJ8wRgIhAKPhqgv5y77wjGkFy9QyrYFFXWwNTA7AyqFeQ2M' +
         '_0BJyAiEA4vTHJI2yQZUGioAU3qf3RG5q1GhsEFRfpgoNtwhDoEw=',
 	test_n: 'y6g6RU6jf9yMgk4GXDe',
 };
 
 async function run() {
-	let session = new ytcog.Session(app.cookie, app.userAgent);
+	let session = new ytcog.Session(app.cookie, app.userAgent, app.proxy);
 	session.debugOn = true;
 	await session.fetch();
 	console.log(`Session status: ${session.status} (${session.reason})`);
