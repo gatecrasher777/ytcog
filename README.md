@@ -17,11 +17,12 @@ YouTube innertube class library for node-js; session, searches, channels, playli
 * ```Channel``` - fetch metadata, videos, playlists, associated channels or search specific channels. 
 * ```Playlist``` - fetch videos from specific playlists 
 * ```Video``` - fetch metadata and stream information deciphered/encoded to avoid throttling - ensure reliable and fast downloads.
-* ```Download``` - a convenience object for easy once-off, sessionless, downloads.
+* ```Comment``` - helper class for the download and management of video comments and threads.
+* ```Download``` - a convenience class for easy once-off, sessionless, downloads.
 
 See the [wiki](https://github.com/gatecrasher777/ytcog/wiki) for greater detail.
 
-## Basic Usage 
+## Basic Usage
 
 ### Easy downloader
 
