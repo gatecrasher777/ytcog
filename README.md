@@ -1,7 +1,7 @@
 # ytcog
 ![NPM](https://img.shields.io/npm/l/ytcog?style=plastic)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Gatecrasher777/ytcog?style=plastic)  
-YouTube innertube class library for node-js; session, searches, channels, playlists, videos and downloads.
+YouTube innertube class library for node-js; session, searches, channels, playlists, videos, comments and downloads.
 
 ## Features
 
