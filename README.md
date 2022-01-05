@@ -179,6 +179,12 @@ const video = new ytcog.Video(session, videoOptions);
 await video.fetch();
 ```
 
+Get comments
+```js
+const video = new ytcog.Video(session, videoOptions);
+await video.fetchComments(commentOptions);
+```
+
 Or just download:
 ```js
 const video = new ytcog.Video(session, videoOptions);
@@ -186,6 +192,8 @@ await video.download();
 ```
 
 ```videoOptions``` See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#Options) for all video options. 
+```commentOptions``` See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#CommentOptions) for comment options. 
+
 
 ### Examples
 
