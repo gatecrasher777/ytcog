@@ -43,7 +43,7 @@ let app = {
 		// Metadata to add to downloaded media
 		metadata: 'author,title,published',
 		// make srt subtitles if captions are available, chose language codes, comma separated
-		subtitles: '',
+		subtitles: 'en,es,ja',
 		// supply a callback for download progress;
 		progress: (prg, siz, tot) => {
 			app.downloaded += siz;
