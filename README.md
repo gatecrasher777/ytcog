@@ -1,7 +1,7 @@
 # ytcog
 ![NPM](https://img.shields.io/npm/l/ytcog?style=plastic)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Gatecrasher777/ytcog?style=plastic)  
-YouTube innertube class library for node-js; session, searches, channels, playlists, videos and downloads.
+YouTube innertube class library for node-js; session, searches, channels, playlists, videos, comments and downloads.
 
 ## Features
 
@@ -17,11 +17,12 @@ YouTube innertube class library for node-js; session, searches, channels, playli
 * ```Channel``` - fetch metadata, videos, playlists, associated channels or search specific channels. 
 * ```Playlist``` - fetch videos from specific playlists 
 * ```Video``` - fetch metadata and stream information deciphered/encoded to avoid throttling - ensure reliable and fast downloads.
-* ```Download``` - a convenience object for easy once-off, sessionless, downloads.
+* ```Comment``` - helper class for the download and management of video comments and threads.
+* ```Download``` - a convenience class for easy once-off, sessionless, downloads.
 
 See the [wiki](https://github.com/gatecrasher777/ytcog/wiki) for greater detail.
 
-## Basic Usage 
+## Basic Usage
 
 ### Easy downloader
 
@@ -178,13 +179,21 @@ const video = new ytcog.Video(session, videoOptions);
 await video.fetch();
 ```
 
+Get comments
+```js
+const video = new ytcog.Video(session, videoOptions);
+await video.fetchComments(commentOptions);
+```
+
 Or just download:
 ```js
 const video = new ytcog.Video(session, videoOptions);
 await video.download();
 ```
 
-```videoOptions``` See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#Options) for all video options. 
+```videoOptions``` See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#Options) for all video options.  
+```commentOptions``` See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#CommentOptions) for comment options. 
+
 
 ### Examples
 

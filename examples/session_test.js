@@ -18,7 +18,7 @@ let app = {
 	// info fields to ignore
 	test_sig: 'bAOWAOq0QJ8wRgIhAKPhqgv5y77wjGkFy9QyrYFFXWwNTA7AyqFeQ2M' +
         '_0BJyAiEA4vTHJI2yQZUGioAU3qf3RG5q1GhsEFRfpgoNtwhDoEw=',
-	test_n: 'y6g6RU6jf9yMgk4GXDe',
+	test_n: 'KHy-yHaPN1HvjA',
 };
 
 async function run() {

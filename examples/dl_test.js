@@ -26,9 +26,9 @@ let app = {
 		filename: '${author}_${datetime}_${title}_${id}_${videoQuality}_${videoCodec}_${audioCodec}',
 		// any, mp4, webm, mkv
 		container: 'any',
-		// desired quality: highest, 1080p, 720p, 480p, medium, 360p, 240p, 144p, lowest
+		// desired quality: highest, 1080p, 720p, 480p, medium, 360p, 240p, 144p, lowest, none
 		videoQuality: '1080p',
-		// desired audio quality: high, medium, low
+		// desired audio quality: high, medium, low, none
 		audioQuality: 'medium',
 		// for streams of equal resolution/quality pick the highest or lowest bitrate.
 		mediaBitrate: 'highest',

@@ -40,6 +40,8 @@ async function run() {
 		channel.debugOn = true;
 		console.log('\nFetch channel profile data (items: about)');
 		await channel.fetch();
+		console.log('Raw Channel json to ./examples/channelA.json');
+		fs.writeFileSync('./examples/channelA.json', ut.jsp(channel.data), 'utf8');
 		console.log(`Channel status: ${channel.status} (${channel.reason})`);
 		if (channel.status === 'OK') {
 			console.log('\nFetch latest Channel videos');

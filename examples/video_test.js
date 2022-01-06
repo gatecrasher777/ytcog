@@ -52,6 +52,12 @@ let app = {
 		// whether existing files are overwritten
 		overwrite: 'yes',
 	},
+	comment_options: {
+		order: 'top',
+		quantity: 60,
+		replies: true,
+		filename: '${author}_${datetime}_${title}_${id}_comments',
+	},
 };
 
 async function run() {
@@ -74,6 +80,17 @@ async function run() {
 			console.log(video.streamInfo);
 			console.log(`\nStreams expire in ${ut.secDur(video.timeToExpiry, 'hms')}`);
 			console.log(video.captions);
+			console.log('\nDownloading comments (if available)');
+			if (await video.hasComments()) {
+				console.log(`Number of Comments: ${video.commentCount}`);
+				await video.commentsText(app.comment_options);
+				console.log(`\n\nVideo status: ${video.status} (${video.reason})`);
+				if (video.status === 'OK') console.log(`Success - comments saved to ${video.cfn}`);
+			} else {
+				console.log(`\n\nVideo status: ${video.status} (${video.reason})`);
+			}
+			console.log('\nVideo comments json saved to ./examples/videoComments.json');
+			fs.writeFileSync('./examples/videoComments.json', ut.jsp(video.commentData), 'utf8');
 			console.log(`\nDownloading test video using given test options`);
 			await video.download();
 			console.log(`\n\nVideo status: ${video.status} (${video.reason})`);
