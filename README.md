@@ -192,7 +192,7 @@ await video.download();
 ```
 
 ```videoOptions``` See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#Options) for all video options.  
-```commentOptions``` See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#CommentOptions) for comment options. 
+```commentOptions``` See [wiki](https://github.com/gatecrasher777/ytcog/wiki/Video#comment-options) for comment options. 
 
 
 ### Examples
