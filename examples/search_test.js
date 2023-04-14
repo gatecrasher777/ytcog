@@ -33,7 +33,69 @@ let app = {
 		// live, 4k, hd, subtitles, cc, 360, vr180, 3d, hdr, location, purchased
 		features: '',
 	},
+	ignore : ['cookie', 'userAgent', 'debugOn', 'options', 'sapisid','commentOptions','commentOrder',
+		'status', 'reason', 'cancelled','periodExceeded'],
 };
+
+async function runVideos(search) {
+	console.log(`\n\nSearch for ${app.test_options.quantity} videos with query: "${app.test_options.query}"`);
+	await search.fetch();
+	console.log('Raw search json saved to ./examples/searchVideos.json');
+	fs.writeFileSync('./examples/searchVideos.json', ut.jsp(search.data), 'utf8');
+	console.log(`\nSearch status: ${search.status} (${search.reason})`);
+	if (search.status === 'OK') {
+		console.log(`Found ${search.results.length} videos for "${search.options.query}"`);
+		console.log('\nSearch info/videos saved to ./examples/search_videos.json');
+		let output = {
+			search: search.info(app.ignore),
+			videos: [],
+		};
+		search.results.forEach(item => {
+			output.videos.push(item.info(app.ignore));
+		});
+		fs.writeFileSync('./examples/search_videos.json', ut.jsp(output), 'utf8');
+	}
+}
+
+async function runPlaylists(search) {
+	console.log('\n\nSearch for 30 playlists');
+	await search.fetch({ items: 'playlists', quantity: 30 });
+	console.log('Raw search json saved to ./examples/searchPlaylists.json');
+	fs.writeFileSync('./examples/searchPlaylists.json', ut.jsp(search.data), 'utf8');
+	console.log(`\nSearch status: ${search.status} (${search.reason})`);
+	if (search.status === 'OK') {
+		console.log(`Found ${search.results.length} results for "${search.options.query}"`);
+		console.log('\nSearch info/results saved to ./examples/search_playlists.json');
+		let output = {
+			search: search.info(app.ignore),
+			playlists: [],
+		};
+		search.playlists.forEach(item => {
+			output.playlists.push(item.info(app.ignore));
+		});
+		fs.writeFileSync('./examples/search_playlists.json', ut.jsp(output), 'utf8');
+	}
+}
+
+async function runChannels(search) {
+	console.log('\n\nSearch for 50 channels');
+	await search.fetch({ items: 'channels', quantity: 50 });
+	console.log('Raw search json saved to ./examples/searchChannels.json');
+	fs.writeFileSync('./examples/searchChannels.json', ut.jsp(search.data), 'utf8');
+	console.log(`\nSearch status: ${search.status} (${search.reason})`);
+	if (search.status === 'OK') {
+		console.log(`Found ${search.results.length} channels for "${search.options.query}"`);
+		console.log('\nSearch info/channels saved to ./examples/search_channels.json');
+		let output = {
+			search: search.info(['cookie', 'userAgent', 'sapisid']),
+			channels: [],
+		};
+		search.results.forEach(item => {
+			output.channels.push(item.info(app.ignore));
+		});
+		fs.writeFileSync('./examples/search_channels.json', ut.jsp(output), 'utf8');
+	}
+}
 
 async function run() {
 	let session = new ytcog.Session(app.cookie, app.userAgent, app.proxy);
@@ -42,59 +104,12 @@ async function run() {
 	if (session.status === 'OK') {
 		let search = new ytcog.Search(session, app.test_options);
 		search.debugOn = true;
-		await search.fetch();
-		console.log(`\nSearch status: ${search.status} (${search.reason})`);
-		if (search.status === 'OK') {
-			console.log(`Found ${search.results.length} results for "${search.options.query}"`);
-			console.log('\nSearch info/results saved to ./examples/search_results.json');
-			let output1 = {
-				search: search.info(['cookie', 'userAgent', 'sapisid']),
-				results: [],
-			};
-			search.results.forEach(item => {
-				output1.results.push(item.info(['cookie', 'userAgent', 'options', 'sapisid',
-					'status', 'reason', 'cancelled']));
-			});
-			fs.writeFileSync('./examples/search_results.json', ut.jsp(output1), 'utf8');
-			console.log('Raw search json saved to ./examples/search.json');
-			fs.writeFileSync('./examples/search.json', ut.jsp(search.data), 'utf8');
-			console.log('\n\nSearch for 50 channels');
-			await search.fetch({ items: 'channels', quantity: 50 });
-			console.log(`\nSearch status: ${search.status} (${search.reason})`);
-			if (search.status === 'OK') {
-				console.log(`Found ${search.results.length} results for "${search.options.query}"`);
-				console.log('\nSearch info/results saved to ./examples/search_channels.json');
-				let output2 = {
-					search: search.info(['cookie', 'userAgent', 'sapisid']),
-					results: [],
-				};
-				search.results.forEach(item => {
-					output2.results.push(item.info(['cookie', 'userAgent', 'options', 'sapisid',
-						'status', 'reason', 'cancelled']));
-				});
-				fs.writeFileSync('./examples/search_channels.json', ut.jsp(output2), 'utf8');
-				console.log('Raw search json saved to ./examples/searchC.json');
-				fs.writeFileSync('./examples/searchC.json', ut.jsp(search.data), 'utf8');
-				console.log('\n\nSearch for 30 playlists');
-				await search.fetch({ items: 'playlists', quantity: 30 });
-				console.log(`\nSearch status: ${search.status} (${search.reason})`);
-				if (search.status === 'OK') {
-					console.log(`Found ${search.results.length} results for "${search.options.query}"`);
-					console.log('\nSearch info/results saved to ./examples/search_playlists.json');
-					let output3 = {
-						search: search.info(['cookie', 'userAgent', 'sapisid']),
-						results: [],
-					};
-					search.results.forEach(item => {
-						output3.results.push(item.info(['cookie', 'userAgent', 'options', 'sapisid',
-							'status', 'reason', 'cancelled']));
-					});
-					fs.writeFileSync('./examples/search_playlists.json', ut.jsp(output3), 'utf8');
-					console.log('Raw search json saved to ./examples/searchP.json');
-					fs.writeFileSync('./examples/searchP.json', ut.jsp(search.data), 'utf8');
-				}
-			}
-		}
+		await runVideos(search);
+		await runPlaylists(search);
+		await runChannels(search);
+		console.log('Session complete.')
+	} else {
+		console.log('Session failed.')
 	}
 }
 

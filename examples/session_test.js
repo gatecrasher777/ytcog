@@ -26,6 +26,9 @@ async function run() {
 	session.debugOn = true;
 	await session.fetch();
 	console.log(`Session status: ${session.status} (${session.reason})`);
+	fs.writeFileSync('./examples/session_info.json', ut.jsp(session.info()), 'utf8');
+	fs.writeFileSync('./examples/session.json', ut.jsp(session.data), 'utf8');
+	fs.writeFileSync('./examples/player.js', session.player.data, 'utf8');
 	if (session.status === 'OK') {
 		console.log(`\nSession key: ${session.key}`);
 		console.log(`Visitor id: ${session.context.client.visitorData}`);
